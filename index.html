@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>КОРГИ Инглиш — пройди тест по английски!</title>
 
-<!-- OG теги для превью в ТГ и МАХ -->
 <meta property="og:title" content="КОРГИ Инглиш — пройди тест по английски!" />
 <meta property="og:description" content="Проверь свой English вместе с Корги 🐕" />
 <meta property="og:image" content="https://Yalica.github.io/dog-quiz/preview-thumb.jpg" />
@@ -89,17 +88,43 @@ html, body {
   object-fit: fill;
   z-index: 0;
 }
-#preview-overlay {
+/* ПРЕВЬЮ: картинка поверх видео */
+#preview-thumb-img {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  z-index: 5;
+  object-fit: fill;
+  z-index: 2;
   cursor: pointer;
-  pointer-events: none;
 }
-#preview-overlay.active {
-  pointer-events: auto;
+#preview-thumb-img.hidden {
+  display: none;
+}
+#play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 72px;
+  height: 72px;
+  background: rgba(0,0,0,0.55);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  cursor: pointer;
+}
+#play-icon.hidden {
+  display: none;
+}
+#play-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+  margin-left: 4px;
 }
 #sound-btn {
   position: absolute;
@@ -114,11 +139,14 @@ html, body {
   font-size: 20px;
   color: white;
   cursor: pointer;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+}
+#sound-btn.visible {
+  display: flex;
 }
 .progress-wrap {
   position: absolute;
@@ -373,9 +401,12 @@ html, body {
 
     <!-- ПРЕВЬЮ -->
     <div class="screen" id="screen-preview">
-      <video class="bg-video" id="preview-video" src="preview.mp4" autoplay muted playsinline loop></video>
-      <button id="sound-btn" onclick="toggleSound()">🔇</button>
-      <div id="preview-overlay"></div>
+      <video class="bg-video" id="preview-video" src="preview.mp4" muted playsinline></video>
+      <img id="preview-thumb-img" src="preview-thumb.jpg" alt="preview">
+      <div id="play-icon">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <button id="sound-btn" onclick="toggleSound()">🔊</button>
     </div>
 
     <!-- ВОПРОС 1 -->
@@ -477,6 +508,23 @@ html, body {
 </div>
 
 <script>
+// Нажатие на картинку — запускает видео
+document.getElementById('preview-thumb-img').addEventListener('click', function() {
+  this.classList.add('hidden');
+  document.getElementById('play-icon').classList.add('hidden');
+  const video = document.getElementById('preview-video');
+  video.play();
+  document.getElementById('sound-btn').classList.add('visible');
+});
+
+document.getElementById('play-icon').addEventListener('click', function() {
+  document.getElementById('preview-thumb-img').classList.add('hidden');
+  this.classList.add('hidden');
+  const video = document.getElementById('preview-video');
+  video.play();
+  document.getElementById('sound-btn').classList.add('visible');
+});
+
 function toggleSound() {
   const video = document.getElementById('preview-video');
   const btn = document.getElementById('sound-btn');
