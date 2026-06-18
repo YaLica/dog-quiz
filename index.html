@@ -3,392 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>КОРГИ Инглиш — пройди тест по английски!</title>
-
-<meta property="og:title" content="КОРГИ Инглиш — пройди тест по английски!" />
-<meta property="og:description" content="Проверь свой English вместе с Корги 🐕" />
-<meta property="og:image" content="https://Yalica.github.io/dog-quiz/preview-thumb.jpg" />
-<meta property="og:image:width" content="1280" />
-<meta property="og:image:height" content="720" />
-<meta property="og:video" content="https://Yalica.github.io/dog-quiz/preview.mp4" />
-<meta property="og:video:type" content="video/mp4" />
-<meta property="og:video:width" content="1280" />
-<meta property="og:video:height" content="720" />
-<meta property="og:url" content="https://Yalica.github.io/dog-quiz/" />
-<meta property="og:type" content="video.other" />
-<meta property="og:site_name" content="КОРГИ Инглиш" />
-<meta name="twitter:card" content="player" />
-<meta name="twitter:title" content="КОРГИ Инглиш — пройди тест!" />
-<meta name="twitter:image" content="https://Yalica.github.io/dog-quiz/preview-thumb.jpg" />
-<meta name="twitter:player" content="https://Yalica.github.io/dog-quiz/" />
-<meta name="twitter:player:width" content="1280" />
-<meta name="twitter:player:height" content="720" />
-
+<title>КОРГИ Инглиш — пройди тест!</title>
+<meta property="og:title"        content="КОРГИ Инглиш — пройди тест по английскому!" />
+<meta property="og:description"  content="Проверь свой English вместе с Корги 🐕" />
+<meta property="og:image"        content="https://Yalica.github.io/dog-quiz/preview-thumb.png" />
+<meta property="og:type"         content="website" />
+<meta name="twitter:card"        content="summary_large_image" />
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  touch-action: none;
-  background-color: #000;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; background-color: #000; }
 @media (min-width: 600px) and (pointer: fine) {
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #111;
-  }
-  .phone-frame {
-    position: relative;
-    height: 95vh;
-    width: calc(95vh * 9 / 16);
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 0 0 8px #222, 0 30px 80px rgba(0,0,0,0.8);
-  }
+  body { display: flex; align-items: center; justify-content: center; background: #111; }
+  .phone-frame { position: relative; height: 95vh; width: calc(95vh * 9 / 16); border-radius: 24px; overflow: hidden; box-shadow: 0 0 0 8px #222, 0 30px 80px rgba(0,0,0,0.8); }
 }
 @media not all and (min-width: 600px) and (pointer: fine) {
-  .phone-frame {
-    width: 100%;
-    height: 100%;
-  }
+  .phone-frame { width: 100%; height: 100%; }
 }
-.carousel {
-  display: flex;
-  width: 500%;
-  height: 100%;
-  transition: transform 0.4s ease;
-}
-.screen {
-  width: 20%;
-  height: 100%;
-  flex-shrink: 0;
-  position: relative;
-  background-color: #000;
-}
-.bg-video {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  z-index: 0;
-}
-.bg-image {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  z-index: 0;
-}
-/* ПРЕВЬЮ: картинка поверх видео */
-#preview-thumb-img {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  z-index: 2;
-  cursor: pointer;
-}
-#preview-thumb-img.hidden {
-  display: none;
-}
-#play-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  width: 72px;
-  height: 72px;
-  background: rgba(0,0,0,0.55);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  cursor: pointer;
-}
-#play-icon.hidden {
-  display: none;
-}
-#play-icon svg {
-  width: 32px;
-  height: 32px;
-  fill: white;
-  margin-left: 4px;
-}
-#sound-btn {
-  position: absolute;
-  bottom: 20px;
-  right: 16px;
-  z-index: 10;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 20px;
-  color: white;
-  cursor: pointer;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-#sound-btn.visible {
-  display: flex;
-}
-.progress-wrap {
-  position: absolute;
-  top: 10px;
-  left: 16px;
-  right: 16px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.progress-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.progress-label span {
-  color: rgba(255, 255, 255, 0.55);
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
-.progress-track {
-  width: 100%;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  overflow: hidden;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-.progress-fill {
-  height: 100%;
-  width: 33%;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #d98a41, #f0b46a);
-  box-shadow: 0 0 8px rgba(217, 138, 65, 0.7);
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.corgi-wrap {
-  position: absolute;
-  top: 5mm;
-  left: 0;
-  width: 100%;
-  height: 40%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-.corgi-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.question-box {
-  position: absolute;
-  top: calc(40% + 5mm + 20px - 3mm);
-  left: 6px;
-  right: 6px;
-  height: calc(60px + 9mm);
-  padding: 0 18px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-#screen-2 .question-box {
-  height: calc(60px + 9mm + 4mm);
-}
-#screen-3 .question-box {
-  height: calc(60px + 9mm + 4mm);
-}
-#screen-results .question-box {
-  top: 8%;
-  transform: none;
-  height: auto;
-  padding: 20px 24px;
-}
-.question-text {
-  color: #ffffff;
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.4;
-}
+.carousel { display: flex; width: 600%; height: 100%; transition: transform 0.4s ease; }
+.screen { width: calc(100% / 6); height: 100%; flex-shrink: 0; position: relative; background-color: #000; }
+.bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 0; }
+.bg-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 0; }
+#thumb-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 1; }
+#screen-thumb { cursor: pointer; }
+#preview-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; cursor: pointer; pointer-events: none; }
+#preview-overlay.active { pointer-events: auto; }
+.progress-wrap { position: absolute; top: 10px; left: 16px; right: 16px; z-index: 10; display: flex; flex-direction: column; gap: 4px; }
+.progress-label { display: flex; justify-content: space-between; align-items: center; }
+.progress-label span { color: rgba(255,255,255,0.55); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.3px; }
+.progress-track { width: 100%; height: 5px; background: rgba(255,255,255,0.15); border-radius: 10px; overflow: hidden; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.progress-fill { height: 100%; width: 0%; border-radius: 10px; background: linear-gradient(90deg, #d98a41, #f0b46a); box-shadow: 0 0 8px rgba(217,138,65,0.7); transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+.corgi-wrap { position: absolute; top: 5mm; left: 0; width: 100%; height: 40%; display: flex; align-items: center; justify-content: center; z-index: 1; }
+.corgi-wrap img { width: 100%; height: 100%; object-fit: contain; }
+.question-box { position: absolute; top: calc(40% + 5mm + 20px - 3mm); left: 6px; right: 6px; height: calc(60px + 9mm); padding: 0 18px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 14px; border: 1px solid rgba(255,255,255,0.15); z-index: 2; display: flex; align-items: center; justify-content: center; text-align: center; }
+#screen-2 .question-box { height: calc(60px + 9mm + 4mm); }
+#screen-3 .question-box { height: calc(60px + 9mm + 4mm); }
+#screen-results .question-box { top: 8%; transform: none; height: auto; padding: 20px 24px; }
+.question-text { color: #fff; font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; }
 #screen-2 .question-text { font-size: 15px; }
 #screen-3 .question-text { font-size: 16px; }
-#result-text {
-  color: #ffffff;
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.4;
-  text-align: center;
-}
-#results-form {
-  position: absolute;
-  top: 38%;
-  left: 6px;
-  right: 6px;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.form-input {
-  width: 100%;
-  height: 50px;
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 12px;
-  padding: 0 16px;
-  color: #ffffff;
-  font-size: 16px;
-  font-family: system-ui, -apple-system, sans-serif;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.form-input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
-}
-.form-input:focus {
-  border-color: rgba(217, 138, 65, 0.85);
-}
-.messenger-label {
-  color: rgba(255, 255, 255, 0.75);
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: -2px;
-}
-.messenger-row {
-  display: flex;
-  gap: 8px;
-}
-.messenger-btn {
-  flex: 1;
-  height: 44px;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: system-ui, -apple-system, sans-serif;
-  cursor: pointer;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  transition: background 0.15s, border-color 0.15s;
-  user-select: none;
-  -webkit-user-select: none;
-}
-.messenger-btn:active {
-  transform: scale(0.95);
-}
-.messenger-btn.selected {
-  background: rgba(217, 138, 65, 0.35);
-  border-color: #d98a41;
-  color: #d98a41;
-}
-#submit-btn {
-  width: 100%;
-  height: 54px;
-  background: #d98a41;
-  border: none;
-  border-radius: 25px;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: system-ui, -apple-system, sans-serif;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  margin-top: 2px;
-}
-#submit-btn:active {
-  transform: scale(0.95);
-}
-#submit-btn:disabled {
-  opacity: 0.65;
-  cursor: default;
-  transform: none;
-}
-.buttons-grid {
-  position: absolute;
-  top: calc(40% + 5mm + 20px - 3mm + 60px + 9mm + 2px);
-  left: 6px;
-  right: 6px;
-  bottom: 0px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  row-gap: 0px;
-  column-gap: 0px;
-  z-index: 2;
-}
-#buttons-grid-2 {
-  top: calc(40% + 5mm + 20px - 3mm + 60px + 9mm + 4mm + 2px);
-}
-#buttons-grid-3 {
-  top: calc(40% + 5mm + 20px - 3mm + 60px + 9mm + 4mm + 2px);
-}
+#result-text { color: #fff; font-family: system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; line-height: 1.4; text-align: center; }
+#results-form { position: absolute; top: 38%; left: 6px; right: 6px; z-index: 3; display: flex; flex-direction: column; gap: 10px; }
+.form-input { width: 100%; height: 50px; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.35); border-radius: 12px; padding: 0 16px; color: #fff; font-size: 16px; font-family: system-ui, -apple-system, sans-serif; outline: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; -webkit-appearance: none; appearance: none; }
+.form-input::placeholder { color: rgba(255,255,255,0.45); }
+.form-input:focus { border-color: rgba(217,138,65,0.85); }
+.messenger-label { color: rgba(255,255,255,0.75); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; text-align: center; margin-bottom: -2px; }
+.messenger-row { display: flex; gap: 8px; }
+.messenger-btn { flex: 1; height: 44px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; color: #fff; font-size: 13px; font-weight: 600; font-family: system-ui, -apple-system, sans-serif; cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: background 0.15s, border-color 0.15s; user-select: none; -webkit-user-select: none; }
+.messenger-btn:active { transform: scale(0.95); }
+.messenger-btn.selected { background: rgba(217,138,65,0.35); border-color: #d98a41; color: #d98a41; }
+#submit-btn { width: 100%; height: 54px; background: #d98a41; border: none; border-radius: 25px; color: #fff; font-size: 16px; font-weight: 700; font-family: system-ui, -apple-system, sans-serif; letter-spacing: 0.5px; cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none; -webkit-user-select: none; margin-top: 2px; }
+#submit-btn:active { transform: scale(0.95); }
+#submit-btn:disabled { opacity: 0.65; cursor: default; transform: none; }
+.buttons-grid { position: absolute; top: calc(40% + 5mm + 20px - 3mm + 60px + 9mm + 2px); left: 6px; right: 6px; bottom: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; row-gap: 0px; column-gap: 0px; z-index: 2; }
+#buttons-grid-2 { top: calc(40% + 5mm + 20px - 3mm + 60px + 9mm + 4mm + 2px); }
+#buttons-grid-3 { top: calc(40% + 5mm + 20px - 3mm + 60px + 9mm + 4mm + 2px); }
 .buttons-grid.locked { pointer-events: none; }
-.btn-item {
-  width: 100%;
-  height: 100%;
-  background: url('btn-default.png') center/100% 100% no-repeat;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  outline: none;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  color: #000000;
-  font-size: 22px;
-  font-weight: 700;
-  font-family: system-ui, -apple-system, sans-serif;
-  user-select: none;
-  -webkit-user-select: none;
-}
+.btn-item { width: 100%; height: 100%; background: url('btn-default.png') center/100% 100% no-repeat; border: none; padding: 0; margin: 0; cursor: pointer; outline: none; overflow: hidden; display: flex; align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent; touch-action: manipulation; color: #000; font-size: 22px; font-weight: 700; font-family: system-ui, -apple-system, sans-serif; user-select: none; -webkit-user-select: none; }
 .btn-item.pressed { background-image: url('btn-pressed.png'); }
 .btn-item.correct { background-image: url('btn-success.png') !important; pointer-events: none; }
 .btn-item.wrong   { background-image: url('btn-error.png')   !important; pointer-events: none; }
@@ -399,33 +69,24 @@ html, body {
 <div class="phone-frame">
   <div class="carousel" id="carousel">
 
-    <!-- ПРЕВЬЮ -->
-    <div class="screen" id="screen-preview">
-      <video class="bg-video" id="preview-video" src="preview.mp4" muted playsinline></video>
-      <img id="preview-thumb-img" src="preview-thumb.jpg" alt="preview">
-      <div id="play-icon">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <button id="sound-btn" onclick="toggleSound()">🔊</button>
+    <div class="screen" id="screen-thumb">
+      <img id="thumb-img" src="preview-thumb.png" alt="preview">
     </div>
 
-    <!-- ВОПРОС 1 -->
+    <div class="screen" id="screen-preview">
+      <video class="bg-video" id="preview-video" src="preview.mp4" playsinline></video>
+      <div id="preview-overlay"></div>
+    </div>
+
     <div class="screen" id="screen-1">
       <img class="bg-image" src="london-bg.png" alt="">
       <div class="progress-wrap">
-        <div class="progress-label">
-          <span>Вопрос 1 из 3</span>
-          <span>33%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill"></div>
-        </div>
+        <div class="progress-label"><span>Вопрос 1 из 3</span><span>0%</span></div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
       </div>
       <div class="corgi-wrap"><img src="corgi-shock.png" alt="corgi"></div>
-      <div class="question-box">
-        <p class="question-text">Какое слово точнее всего описывает эмоцию маскота Корги?</p>
-      </div>
-      <div class="buttons-grid" id="buttons-grid-1" data-correct="2" data-next="2">
+      <div class="question-box"><p class="question-text">Какое слово точнее всего описывает эмоцию маскота Корги?</p></div>
+      <div class="buttons-grid" id="buttons-grid-1" data-correct="2" data-next="3" data-step="1">
         <button class="btn-item" data-answer="1">Excited</button>
         <button class="btn-item" data-answer="2">Shocked</button>
         <button class="btn-item" data-answer="3">Devastated</button>
@@ -433,23 +94,15 @@ html, body {
       </div>
     </div>
 
-    <!-- ВОПРОС 2 -->
     <div class="screen" id="screen-2">
       <img class="bg-image" src="london-bg.png" alt="">
       <div class="progress-wrap">
-        <div class="progress-label">
-          <span>Вопрос 2 из 3</span>
-          <span>66%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" style="width:66%"></div>
-        </div>
+        <div class="progress-label"><span>Вопрос 2 из 3</span><span>0%</span></div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
       </div>
       <div class="corgi-wrap"><img src="corgi-strange.png" alt="corgi"></div>
-      <div class="question-box">
-        <p class="question-text">Доктор Корги-Стрэндж просчитал 14 000 вариантов будущего. Помоги ему выбрать верную грамматику для заклинания: „If I tell you what happens, it ... happen".</p>
-      </div>
-      <div class="buttons-grid" id="buttons-grid-2" data-correct="1" data-next="3">
+      <div class="question-box"><p class="question-text">Доктор Корги-Стрэндж просчитал 14 000 вариантов будущего. Помоги ему выбрать верную грамматику для заклинания: „If I tell you what happens, it ... happen".</p></div>
+      <div class="buttons-grid" id="buttons-grid-2" data-correct="1" data-next="4" data-step="2">
         <button class="btn-item" data-answer="1">won't</button>
         <button class="btn-item" data-answer="2">doesn't</button>
         <button class="btn-item" data-answer="3">didn't</button>
@@ -457,23 +110,15 @@ html, body {
       </div>
     </div>
 
-    <!-- ВОПРОС 3 -->
     <div class="screen" id="screen-3">
       <img class="bg-image" src="london-bg.png" alt="">
       <div class="progress-wrap">
-        <div class="progress-label">
-          <span>Вопрос 3 из 3</span>
-          <span>100%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" style="width:100%"></div>
-        </div>
+        <div class="progress-label"><span>Вопрос 3 из 3</span><span>0%</span></div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
       </div>
       <div class="corgi-wrap"><img src="corgi-freddie.png" alt="corgi"></div>
-      <div class="question-box">
-        <p class="question-text">Корги Меркьюри виртуозно управляет временами. Какое слово пропущено в строке легендарной песни: «I ... it all, and I want it now»?</p>
-      </div>
-      <div class="buttons-grid" id="buttons-grid-3" data-correct="1" data-next="4">
+      <div class="question-box"><p class="question-text">Корги Меркьюри виртуозно управляет временами. Какое слово пропущено в строке легендарной песни: «I ... it all, and I want it now»?</p></div>
+      <div class="buttons-grid" id="buttons-grid-3" data-correct="1" data-next="5" data-step="3">
         <button class="btn-item" data-answer="1">want</button>
         <button class="btn-item" data-answer="2">wanted</button>
         <button class="btn-item" data-answer="3">have wanted</button>
@@ -481,19 +126,13 @@ html, body {
       </div>
     </div>
 
-    <!-- ЭКРАН РЕЗУЛЬТАТОВ -->
     <div class="screen" id="screen-results">
       <img class="bg-image" src="london-bg.png" alt="">
-      <div class="question-box">
-        <p id="result-text">Твой результат: 0 из 3</p>
-      </div>
+      <div class="question-box"><p id="result-text">Твой результат: 0 из 3</p></div>
       <div id="results-form">
-        <input class="form-input" type="text" id="user-name"
-               placeholder="Ваше имя" autocomplete="off">
-        <input class="form-input" type="email" id="user-email"
-               placeholder="Ваш e-mail" autocomplete="off">
-        <input class="form-input" type="tel" id="user-phone"
-               placeholder="7 (900) 000-00-00" autocomplete="off">
+        <input class="form-input" type="text" id="user-name" placeholder="Ваше имя" autocomplete="off">
+        <input class="form-input" type="email" id="user-email" placeholder="Ваш e-mail" autocomplete="off">
+        <input class="form-input" type="tel" id="user-phone" placeholder="7 (900) 000-00-00" autocomplete="off">
         <p class="messenger-label">Выберите мессенджер для общения</p>
         <div class="messenger-row">
           <button class="messenger-btn" data-messenger="WhatsApp">WhatsApp</button>
@@ -508,38 +147,274 @@ html, body {
 </div>
 
 <script>
-// Нажатие на картинку — запускает видео
-document.getElementById('preview-thumb-img').addEventListener('click', function() {
-  this.classList.add('hidden');
-  document.getElementById('play-icon').classList.add('hidden');
-  const video = document.getElementById('preview-video');
-  video.play();
-  document.getElementById('sound-btn').classList.add('visible');
-});
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQiSBhiH3Wmy4s6sLZp32CjW6l_2ZwtzzRC5vwHfwfRz0-qsXHE7qo9sYAvSBV388MEQ/exec";
 
-document.getElementById('play-icon').addEventListener('click', function() {
-  document.getElementById('preview-thumb-img').classList.add('hidden');
-  this.classList.add('hidden');
-  const video = document.getElementById('preview-video');
-  video.play();
-  document.getElementById('sound-btn').classList.add('visible');
-});
+var PROGRESS_PERCENTS = [0, 33, 67, 100];
 
-function toggleSound() {
-  const video = document.getElementById('preview-video');
-  const btn = document.getElementById('sound-btn');
-  if (video.muted) {
-    video.muted = false;
-    video.volume = 1;
-    btn.textContent = '🔊';
-  } else {
-    video.muted = true;
-    btn.textContent = '🔇';
-  }
+function setProgressOnEnter(step) {
+  var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
+  var screen = document.getElementById(map[step]);
+  if (!screen) return;
+  var fill = screen.querySelector('.progress-fill');
+  var labels = screen.querySelectorAll('.progress-label span');
+  var percent = PROGRESS_PERCENTS[step - 1];
+  if (fill) { fill.style.transition = 'none'; fill.style.width = percent + '%'; }
+  if (labels[1]) labels[1].textContent = percent + '%';
 }
-</script>
 
-<script src="config.js"></script>
-<script src="engine.js"></script>
+function fillProgressOnAnswer(step) {
+  var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
+  var screen = document.getElementById(map[step]);
+  if (!screen) return;
+  var fill = screen.querySelector('.progress-fill');
+  var labels = screen.querySelectorAll('.progress-label span');
+  var percent = PROGRESS_PERCENTS[step];
+  if (fill) {
+    fill.style.transition = 'width 0.5s cubic-bezier(0.4,0,0.2,1)';
+    requestAnimationFrame(function() { fill.style.width = percent + '%'; });
+  }
+  if (labels[1]) labels[1].textContent = percent + '%';
+}
+
+function initPhoneMask(selector) {
+  var inp = document.querySelector(selector);
+  if (!inp) return;
+  function formatPhone(digits) {
+    var d = digits, result = '7 (';
+    if (d.length === 0) return '7 (';
+    result += d.substring(0, 3);
+    if (d.length >= 3) result += ') ';
+    result += d.substring(3, 6);
+    if (d.length >= 6) result += '-';
+    result += d.substring(6, 8);
+    if (d.length >= 8) result += '-';
+    result += d.substring(8, 10);
+    return result;
+  }
+  inp.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace') {
+      e.preventDefault();
+      var raw = inp.value.replace(/\D/g, '');
+      var digits = raw.length > 1 ? raw.substring(1) : '';
+      if (digits.length === 0) { inp.value = ''; return; }
+      digits = digits.substring(0, digits.length - 1);
+      inp.value = digits.length === 0 ? '' : formatPhone(digits);
+    }
+  });
+  inp.addEventListener('input', function() {
+    var raw = inp.value.replace(/\D/g, '');
+    if (raw.length === 0) { inp.value = ''; return; }
+    if (raw[0] === '7' || raw[0] === '8') raw = raw.substring(1);
+    raw = raw.substring(0, 10);
+    inp.value = formatPhone(raw);
+  });
+  inp.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+  inp.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+}
+initPhoneMask('#user-phone');
+
+const SWIPE_THRESHOLD = 50;
+const carousel = document.getElementById('carousel');
+const totalScreens = 6;
+let current = 0;
+let startX = 0;
+let startY = 0;
+let moved = false;
+let isDragging = false;
+let score = 0;
+let selectedMessenger = '';
+
+var thumbScreen = document.getElementById('screen-thumb');
+function enterQuiz() {
+  goTo(1);
+  var v = document.getElementById('preview-video');
+  v.currentTime = 0;
+  v.play().catch(function(){});
+}
+thumbScreen.addEventListener('click', enterQuiz);
+thumbScreen.addEventListener('touchend', function(e) { e.stopPropagation(); enterQuiz(); }, { passive: true });
+thumbScreen.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+
+const video = document.getElementById('preview-video');
+const overlay = document.getElementById('preview-overlay');
+video.loop = true;
+video.addEventListener('timeupdate', function() {
+  if (video.currentTime >= 6.25) overlay.classList.add('active');
+});
+overlay.addEventListener('click', function() { video.pause(); goTo(2); });
+document.getElementById('screen-preview').addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+document.getElementById('screen-preview').addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+document.getElementById('screen-preview').addEventListener('mousedown',  function(e) { e.stopPropagation(); });
+document.getElementById('screen-preview').addEventListener('mouseup',    function(e) { e.stopPropagation(); });
+
+function goTo(index) {
+  if (index < 0) index = 0;
+  if (index >= totalScreens) index = totalScreens - 1;
+  current = index;
+
+  if (current >= 2 && current <= 4) {
+    setProgressOnEnter(current - 1);
+  }
+
+  if (current === 5) {
+    var label = '';
+    if      (score === 3) label = 'Потрясающе! Ты настоящий знаток!';
+    else if (score === 2) label = 'Отличный результат!';
+    else if (score === 1) label = 'Неплохо, но есть куда расти!';
+    else                  label = 'Попробуй ещё раз!';
+    document.getElementById('result-text').innerHTML =
+      label + '<br>Твой уровень знаний:<br>' + score + ' из 3 баллов';
+    resetForm();
+  }
+
+  carousel.style.transform = "translateX(-" + (current * (100 / totalScreens)) + "%)";
+}
+
+function resetForm() {
+  document.getElementById('user-name').value  = '';
+  document.getElementById('user-email').value = '';
+  document.getElementById('user-phone').value = '';
+  ['user-name','user-email','user-phone'].forEach(function(id) {
+    document.getElementById(id).style.borderColor = 'rgba(255,255,255,0.35)';
+  });
+  selectedMessenger = '';
+  document.querySelectorAll('.messenger-btn').forEach(function(b) { b.classList.remove('selected'); });
+  var btn = document.getElementById('submit-btn');
+  btn.textContent = 'ОСТАВИТЬ ЗАЯВКУ';
+  btn.disabled = false;
+}
+
+document.querySelectorAll('.messenger-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.messenger-btn').forEach(function(b) { b.classList.remove('selected'); });
+    btn.classList.add('selected');
+    selectedMessenger = btn.getAttribute('data-messenger');
+  });
+  btn.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+  btn.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+});
+
+function highlightError(el) {
+  el.style.borderColor = '#ff6b6b';
+  setTimeout(function() { el.style.borderColor = 'rgba(255,255,255,0.35)'; }, 1500);
+}
+
+document.getElementById('submit-btn').addEventListener('click', function() {
+  var submitBtn = document.getElementById('submit-btn');
+  var nameInp   = document.getElementById('user-name');
+  var emailInp  = document.getElementById('user-email');
+  var phoneInp  = document.getElementById('user-phone');
+  var name  = nameInp.value.trim();
+  var email = emailInp.value.trim();
+  var phone = phoneInp.value.trim();
+  var hasError = false;
+  if (!name)  { highlightError(nameInp);  hasError = true; }
+  if (!email) { highlightError(emailInp); hasError = true; }
+  if (!phone || phone.replace(/\D/g,'').length < 11) { highlightError(phoneInp); hasError = true; }
+  if (hasError) return;
+  submitBtn.textContent = 'Отправка...';
+  submitBtn.disabled = true;
+  var formData = new FormData();
+  formData.append('name', name);
+  formData.append('email', email);
+  formData.append('phone', phone);
+  formData.append('messenger', selectedMessenger || 'не выбран');
+  formData.append('score', score + ' из 3');
+  fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: formData })
+    .then(function()  { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; })
+    .catch(function() { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; });
+});
+
+['user-name','user-email','user-phone','submit-btn'].forEach(function(id) {
+  var el = document.getElementById(id);
+  el.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+  el.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+});
+
+function handleAnswer(btn) {
+  if (btn.classList.contains('wrong') || btn.classList.contains('correct')) return;
+  var answer = btn.getAttribute('data-answer');
+  var grid = btn.closest('.buttons-grid');
+  var correctAnswer = grid.getAttribute('data-correct');
+  var nextScreen = parseInt(grid.getAttribute('data-next'));
+  var step = parseInt(grid.getAttribute('data-step'));
+  grid.classList.add('locked');
+  btn.classList.remove('pressed');
+  if (answer === correctAnswer) { score++; btn.classList.add('correct'); }
+  else { btn.classList.add('wrong'); }
+  fillProgressOnAnswer(step);
+  setTimeout(function() { goTo(nextScreen); }, 800);
+}
+
+document.querySelectorAll('.btn-item').forEach(function(btn) {
+  btn.addEventListener('touchstart', function()  { btn.classList.add('pressed'); }, { passive: true });
+  btn.addEventListener('touchcancel', function() { btn.classList.remove('pressed'); }, { passive: true });
+  btn.addEventListener('touchend', function(e) {
+    btn.classList.remove('pressed');
+    if (moved) return;
+    var t = e.changedTouches[0];
+    if (Math.abs(t.clientX - startX) > 10 || Math.abs(t.clientY - startY) > 10) return;
+    e.stopPropagation();
+    handleAnswer(btn);
+  }, { passive: true });
+  btn.addEventListener('mousedown',  function() { btn.classList.add('pressed'); });
+  btn.addEventListener('mouseleave', function() { btn.classList.remove('pressed'); });
+  btn.addEventListener('mouseup', function() {
+    btn.classList.remove('pressed');
+    if (moved) return;
+    handleAnswer(btn);
+  });
+});
+
+carousel.addEventListener('touchstart', function(e) {
+  if (current === 0 || current === 1) return;
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  moved = false;
+  isDragging = true;
+}, { passive: true });
+
+carousel.addEventListener('touchmove', function(e) {
+  if (!isDragging) return;
+  var dx = Math.abs(e.touches[0].clientX - startX);
+  var dy = Math.abs(e.touches[0].clientY - startY);
+  if (dx > 5 || dy > 5) moved = true;
+}, { passive: true });
+
+carousel.addEventListener('touchend', function(e) {
+  if (!isDragging) return;
+  if (e.target.closest('.btn-item')) return;
+  isDragging = false;
+  if (current === 0 || current === 1) return;
+  var dx = startX - e.changedTouches[0].clientX;
+  var dy = startY - e.changedTouches[0].clientY;
+  if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
+}, { passive: true });
+
+carousel.addEventListener('mousedown', function(e) {
+  if (current === 0 || current === 1) return;
+  startX = e.clientX;
+  startY = e.clientY;
+  moved = false;
+  isDragging = true;
+});
+
+carousel.addEventListener('mouseup', function(e) {
+  if (!isDragging) return;
+  if (e.target.closest('.btn-item')) return;
+  isDragging = false;
+  if (current === 0 || current === 1) return;
+  var dx = startX - e.clientX;
+  var dy = startY - e.clientY;
+  if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
+});
+
+window.addEventListener('keydown', function(e) {
+  if (current === 0 || current === 1) return;
+  if (e.key === 'ArrowRight') goTo(current + 1);
+});
+
+goTo(0);
+</script>
 </body>
 </html>
