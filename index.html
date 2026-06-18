@@ -1,33 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>КОРГИ Инглиш — пройди тест!</title>
 <meta property="og:title"        content="КОРГИ Инглиш — пройди тест по английскому!" />
 <meta property="og:description"  content="Проверь свой English вместе с Корги 🐕" />
-<meta property="og:image"        id="og-image" content="" />
-<meta property="og:image:width"  content="1080" />
-<meta property="og:image:height" content="1920" />
+<meta property="og:image"        content="https://Yalica.github.io/dog-quiz/preview-thumb.png" />
 <meta property="og:type"         content="website" />
 <meta name="twitter:card"        content="summary_large_image" />
-
-<script>
-  // Автоматически подставляем полный путь к картинке-превью
-  // относительно того места, где лежит этот файл — ничего вписывать вручную не нужно
-  (function () {
-    var img = new URL('preview-thumb.png', window.location.href).href;
-    document.getElementById('og-image').setAttribute('content', img);
-  })();
-</script>
-
-<!-- Предзагрузка картинок для быстрого открытия -->
-<link rel="preload" as="image" href="preview-thumb.png">
-<link rel="preload" as="image" href="london-bg.png">
-<link rel="preload" as="image" href="corgi-shock.png">
-<link rel="preload" as="image" href="corgi-strange.png">
-<link rel="preload" as="image" href="corgi-freddie.png">
-<link rel="preload" as="image" href="btn-default.png">
-<link rel="preload" as="image" href="btn-pressed.png">
-<link rel="preload" as="image" href="btn-success.png">
-<link rel="preload" as="image" href="btn-error.png">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; background-color: #000; }
@@ -65,7 +46,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; ba
 .form-input { width: 100%; height: 50px; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.35); border-radius: 12px; padding: 0 16px; color: #fff; font-size: 16px; font-family: system-ui, -apple-system, sans-serif; outline: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; -webkit-appearance: none; appearance: none; }
 .form-input::placeholder { color: rgba(255,255,255,0.45); }
 .form-input:focus { border-color: rgba(217,138,65,0.85); }
-.hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .messenger-label { color: rgba(255,255,255,0.75); font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 500; text-align: center; margin-bottom: -2px; }
 .messenger-row { display: flex; gap: 8px; }
 .messenger-btn { flex: 1; height: 44px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; color: #fff; font-size: 13px; font-weight: 600; font-family: system-ui, -apple-system, sans-serif; cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: background 0.15s, border-color 0.15s; user-select: none; -webkit-user-select: none; }
@@ -94,7 +74,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; ba
     </div>
 
     <div class="screen" id="screen-preview">
-      <video class="bg-video" id="preview-video" src="preview.mp4" muted playsinline preload="auto"></video>
+      <video class="bg-video" id="preview-video" src="preview.mp4" playsinline></video>
       <div id="preview-overlay"></div>
     </div>
 
@@ -102,7 +82,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; ba
       <img class="bg-image" src="london-bg.png" alt="">
       <div class="progress-wrap">
         <div class="progress-label"><span>Вопрос 1 из 3</span><span>0%</span></div>
-        <div class="progress-track" role="progressbar" aria-label="Прогресс теста" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill"></div></div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
       </div>
       <div class="corgi-wrap"><img src="corgi-shock.png" alt="corgi"></div>
       <div class="question-box"><p class="question-text">Какое слово точнее всего описывает эмоцию маскота Корги?</p></div>
@@ -118,7 +98,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; ba
       <img class="bg-image" src="london-bg.png" alt="">
       <div class="progress-wrap">
         <div class="progress-label"><span>Вопрос 2 из 3</span><span>0%</span></div>
-        <div class="progress-track" role="progressbar" aria-label="Прогресс теста" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill"></div></div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
       </div>
       <div class="corgi-wrap"><img src="corgi-strange.png" alt="corgi"></div>
       <div class="question-box"><p class="question-text">Доктор Корги-Стрэндж просчитал 14 000 вариантов будущего. Помоги ему выбрать верную грамматику для заклинания: „If I tell you what happens, it ... happen".</p></div>
@@ -134,7 +114,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; ba
       <img class="bg-image" src="london-bg.png" alt="">
       <div class="progress-wrap">
         <div class="progress-label"><span>Вопрос 3 из 3</span><span>0%</span></div>
-        <div class="progress-track" role="progressbar" aria-label="Прогресс теста" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill"></div></div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
       </div>
       <div class="corgi-wrap"><img src="corgi-freddie.png" alt="corgi"></div>
       <div class="question-box"><p class="question-text">Корги Меркьюри виртуозно управляет временами. Какое слово пропущено в строке легендарной песни: «I ... it all, and I want it now»?</p></div>
@@ -153,7 +133,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; ba
         <input class="form-input" type="text" id="user-name" placeholder="Ваше имя" autocomplete="off">
         <input class="form-input" type="email" id="user-email" placeholder="Ваш e-mail" autocomplete="off">
         <input class="form-input" type="tel" id="user-phone" placeholder="7 (900) 000-00-00" autocomplete="off">
-        <input class="hp-field" type="text" id="company" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
         <p class="messenger-label">Выберите мессенджер для общения</p>
         <div class="messenger-row">
           <button class="messenger-btn" data-messenger="WhatsApp">WhatsApp</button>
@@ -168,340 +147,274 @@ html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; ba
 </div>
 
 <script>
-(function () {
-  "use strict";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQiSBhiH3Wmy4s6sLZp32CjW6l_2ZwtzzRC5vwHfwfRz0-qsXHE7qo9sYAvSBV388MEQ/exec";
 
-  // ===== Предзагрузка картинок в кэш браузера (быстрое открытие) =====
-  var PRELOAD_IMAGES = [
-    'preview-thumb.png', 'london-bg.png',
-    'corgi-shock.png', 'corgi-strange.png', 'corgi-freddie.png',
-    'btn-default.png', 'btn-pressed.png', 'btn-success.png', 'btn-error.png'
-  ];
-  PRELOAD_IMAGES.forEach(function (src) {
-    var img = new Image();
-    img.src = src;
-  });
+var PROGRESS_PERCENTS = [0, 33, 67, 100];
 
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQiSBhiH3Wmy4s6sLZp32CjW6l_2ZwtzzRC5vwHfwfRz0-qsXHE7qo9sYAvSBV388MEQ/exec";
+function setProgressOnEnter(step) {
+  var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
+  var screen = document.getElementById(map[step]);
+  if (!screen) return;
+  var fill = screen.querySelector('.progress-fill');
+  var labels = screen.querySelectorAll('.progress-label span');
+  var percent = PROGRESS_PERCENTS[step - 1];
+  if (fill) { fill.style.transition = 'none'; fill.style.width = percent + '%'; }
+  if (labels[1]) labels[1].textContent = percent + '%';
+}
 
-  var PROGRESS_PERCENTS = [0, 33, 67, 100];
-
-  function setProgressOnEnter(step) {
-    var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
-    var screen = document.getElementById(map[step]);
-    if (!screen) return;
-    var fill = screen.querySelector('.progress-fill');
-    var track = screen.querySelector('.progress-track');
-    var labels = screen.querySelectorAll('.progress-label span');
-    var percent = PROGRESS_PERCENTS[step - 1];
-    if (fill) { fill.style.transition = 'none'; fill.style.width = percent + '%'; }
-    if (track) track.setAttribute('aria-valuenow', percent);
-    if (labels[1]) labels[1].textContent = percent + '%';
+function fillProgressOnAnswer(step) {
+  var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
+  var screen = document.getElementById(map[step]);
+  if (!screen) return;
+  var fill = screen.querySelector('.progress-fill');
+  var labels = screen.querySelectorAll('.progress-label span');
+  var percent = PROGRESS_PERCENTS[step];
+  if (fill) {
+    fill.style.transition = 'width 0.5s cubic-bezier(0.4,0,0.2,1)';
+    requestAnimationFrame(function() { fill.style.width = percent + '%'; });
   }
+  if (labels[1]) labels[1].textContent = percent + '%';
+}
 
-  function fillProgressOnAnswer(step) {
-    var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
-    var screen = document.getElementById(map[step]);
-    if (!screen) return;
-    var fill = screen.querySelector('.progress-fill');
-    var track = screen.querySelector('.progress-track');
-    var labels = screen.querySelectorAll('.progress-label span');
-    var percent = PROGRESS_PERCENTS[step];
-    if (fill) {
-      fill.style.transition = 'width 0.5s cubic-bezier(0.4,0,0.2,1)';
-      requestAnimationFrame(function() { fill.style.width = percent + '%'; });
-    }
-    if (track) track.setAttribute('aria-valuenow', percent);
-    if (labels[1]) labels[1].textContent = percent + '%';
+function initPhoneMask(selector) {
+  var inp = document.querySelector(selector);
+  if (!inp) return;
+  function formatPhone(digits) {
+    var d = digits, result = '7 (';
+    if (d.length === 0) return '7 (';
+    result += d.substring(0, 3);
+    if (d.length >= 3) result += ') ';
+    result += d.substring(3, 6);
+    if (d.length >= 6) result += '-';
+    result += d.substring(6, 8);
+    if (d.length >= 8) result += '-';
+    result += d.substring(8, 10);
+    return result;
   }
-
-  function initPhoneMask(selector) {
-    var inp = document.querySelector(selector);
-    if (!inp) return;
-    function formatPhone(digits) {
-      var d = digits, result = '7 (';
-      if (d.length === 0) return '7 (';
-      result += d.substring(0, 3);
-      if (d.length >= 3) result += ') ';
-      result += d.substring(3, 6);
-      if (d.length >= 6) result += '-';
-      result += d.substring(6, 8);
-      if (d.length >= 8) result += '-';
-      result += d.substring(8, 10);
-      return result;
-    }
-    inp.addEventListener('keydown', function(e) {
-      if (e.key === 'Backspace') {
-        e.preventDefault();
-        var raw = inp.value.replace(/\D/g, '');
-        var digits = raw.length > 1 ? raw.substring(1) : '';
-        if (digits.length === 0) { inp.value = ''; return; }
-        digits = digits.substring(0, digits.length - 1);
-        inp.value = digits.length === 0 ? '' : formatPhone(digits);
-      }
-    });
-    inp.addEventListener('input', function() {
+  inp.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace') {
+      e.preventDefault();
       var raw = inp.value.replace(/\D/g, '');
-      if (raw.length === 0) { inp.value = ''; return; }
-      if (raw[0] === '7' || raw[0] === '8') raw = raw.substring(1);
-      raw = raw.substring(0, 10);
-      inp.value = formatPhone(raw);
-    });
-    inp.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-    inp.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
-  }
-  initPhoneMask('#user-phone');
-
-  // Простая проверка email
-  function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
-
-  const SWIPE_THRESHOLD = 50;
-  const carousel = document.getElementById('carousel');
-  const totalScreens = 6;
-  let current = 0;
-  let startX = 0;
-  let startY = 0;
-  let moved = false;
-  let isDragging = false;
-  let score = 0;
-  let selectedMessenger = '';
-
-  var thumbScreen = document.getElementById('screen-thumb');
-  function enterQuiz() {
-    goTo(1);
-    var v = document.getElementById('preview-video');
-    v.currentTime = 0;
-    v.play().catch(function(){});
-  }
-  thumbScreen.addEventListener('click', enterQuiz);
-  thumbScreen.addEventListener('touchend', function(e) { e.stopPropagation(); enterQuiz(); }, { passive: true });
-  thumbScreen.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-
-  const video = document.getElementById('preview-video');
-  const overlay = document.getElementById('preview-overlay');
-  video.loop = true;
-  video.muted = true;
-  video.setAttribute('muted', '');
-  video.addEventListener('timeupdate', function() {
-    if (video.currentTime >= 6.25) overlay.classList.add('active');
+      var digits = raw.length > 1 ? raw.substring(1) : '';
+      if (digits.length === 0) { inp.value = ''; return; }
+      digits = digits.substring(0, digits.length - 1);
+      inp.value = digits.length === 0 ? '' : formatPhone(digits);
+    }
   });
-  overlay.addEventListener('click', function() { video.pause(); goTo(2); });
-  document.getElementById('screen-preview').addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-  document.getElementById('screen-preview').addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
-  document.getElementById('screen-preview').addEventListener('mousedown',  function(e) { e.stopPropagation(); });
-  document.getElementById('screen-preview').addEventListener('mouseup',    function(e) { e.stopPropagation(); });
+  inp.addEventListener('input', function() {
+    var raw = inp.value.replace(/\D/g, '');
+    if (raw.length === 0) { inp.value = ''; return; }
+    if (raw[0] === '7' || raw[0] === '8') raw = raw.substring(1);
+    raw = raw.substring(0, 10);
+    inp.value = formatPhone(raw);
+  });
+  inp.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+  inp.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+}
+initPhoneMask('#user-phone');
 
-  function goTo(index) {
-    if (index < 0) index = 0;
-    if (index >= totalScreens) index = totalScreens - 1;
-    current = index;
+const SWIPE_THRESHOLD = 50;
+const carousel = document.getElementById('carousel');
+const totalScreens = 6;
+let current = 0;
+let startX = 0;
+let startY = 0;
+let moved = false;
+let isDragging = false;
+let score = 0;
+let selectedMessenger = '';
 
-    if (current >= 2 && current <= 4) {
-      setProgressOnEnter(current - 1);
-    }
+var thumbScreen = document.getElementById('screen-thumb');
+function enterQuiz() {
+  goTo(1);
+  var v = document.getElementById('preview-video');
+  v.currentTime = 0;
+  v.play().catch(function(){});
+}
+thumbScreen.addEventListener('click', enterQuiz);
+thumbScreen.addEventListener('touchend', function(e) { e.stopPropagation(); enterQuiz(); }, { passive: true });
+thumbScreen.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
 
-    if (current === 5) {
-      var label = '';
-      if      (score === 3) label = 'Потрясающе! Ты настоящий знаток!';
-      else if (score === 2) label = 'Отличный результат!';
-      else if (score === 1) label = 'Неплохо, но есть куда расти!';
-      else                  label = 'Попробуй ещё раз!';
-           document.getElementById('result-text').innerHTML =
-        label + '<br>Твой уровень знаний:<br>' + score + ' из 3 баллов';
-      resetForm();
-    }
+const video = document.getElementById('preview-video');
+const overlay = document.getElementById('preview-overlay');
+video.loop = true;
+video.addEventListener('timeupdate', function() {
+  if (video.currentTime >= 6.25) overlay.classList.add('active');
+});
+overlay.addEventListener('click', function() { video.pause(); goTo(2); });
+document.getElementById('screen-preview').addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+document.getElementById('screen-preview').addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+document.getElementById('screen-preview').addEventListener('mousedown',  function(e) { e.stopPropagation(); });
+document.getElementById('screen-preview').addEventListener('mouseup',    function(e) { e.stopPropagation(); });
 
-    carousel.style.transform = "translateX(-" + (current * (100 / totalScreens)) + "%)";
+function goTo(index) {
+  if (index < 0) index = 0;
+  if (index >= totalScreens) index = totalScreens - 1;
+  current = index;
+
+  if (current >= 2 && current <= 4) {
+    setProgressOnEnter(current - 1);
   }
 
-  function resetForm() {
-    document.getElementById('user-name').value  = '';
-    document.getElementById('user-email').value = '';
-    document.getElementById('user-phone').value = '';
-    var hp = document.getElementById('company');
-    if (hp) hp.value = '';
-    ['user-name','user-email','user-phone'].forEach(function(id) {
-      document.getElementById(id).style.borderColor = 'rgba(255,255,255,0.35)';
-    });
-    selectedMessenger = '';
+  if (current === 5) {
+    var label = '';
+    if      (score === 3) label = 'Потрясающе! Ты настоящий знаток!';
+    else if (score === 2) label = 'Отличный результат!';
+    else if (score === 1) label = 'Неплохо, но есть куда расти!';
+    else                  label = 'Попробуй ещё раз!';
+    document.getElementById('result-text').innerHTML =
+      label + '<br>Твой уровень знаний:<br>' + score + ' из 3 баллов';
+    resetForm();
+  }
+
+  carousel.style.transform = "translateX(-" + (current * (100 / totalScreens)) + "%)";
+}
+
+function resetForm() {
+  document.getElementById('user-name').value  = '';
+  document.getElementById('user-email').value = '';
+  document.getElementById('user-phone').value = '';
+  ['user-name','user-email','user-phone'].forEach(function(id) {
+    document.getElementById(id).style.borderColor = 'rgba(255,255,255,0.35)';
+  });
+  selectedMessenger = '';
+  document.querySelectorAll('.messenger-btn').forEach(function(b) { b.classList.remove('selected'); });
+  var btn = document.getElementById('submit-btn');
+  btn.textContent = 'ОСТАВИТЬ ЗАЯВКУ';
+  btn.disabled = false;
+}
+
+document.querySelectorAll('.messenger-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
     document.querySelectorAll('.messenger-btn').forEach(function(b) { b.classList.remove('selected'); });
-    var btn = document.getElementById('submit-btn');
-    btn.textContent = 'ОСТАВИТЬ ЗАЯВКУ';
-    btn.disabled = false;
-  }
-
-  document.querySelectorAll('.messenger-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.messenger-btn').forEach(function(b) { b.classList.remove('selected'); });
-      btn.classList.add('selected');
-      selectedMessenger = btn.getAttribute('data-messenger');
-    });
-    btn.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-    btn.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+    btn.classList.add('selected');
+    selectedMessenger = btn.getAttribute('data-messenger');
   });
+  btn.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+  btn.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+});
 
-  function highlightError(el) {
-    el.style.borderColor = '#ff6b6b';
-    setTimeout(function() { el.style.borderColor = 'rgba(255,255,255,0.35)'; }, 1500);
-  }
+function highlightError(el) {
+  el.style.borderColor = '#ff6b6b';
+  setTimeout(function() { el.style.borderColor = 'rgba(255,255,255,0.35)'; }, 1500);
+}
 
-  // Сохранение лида локально на случай сбоя сети
-  function saveLeadBackup(data) {
-    try {
-      var arr = JSON.parse(localStorage.getItem('corgi_leads_backup') || '[]');
-      arr.push({ data: data, ts: Date.now() });
-      localStorage.setItem('corgi_leads_backup', JSON.stringify(arr));
-    } catch (e) {}
-  }
+document.getElementById('submit-btn').addEventListener('click', function() {
+  var submitBtn = document.getElementById('submit-btn');
+  var nameInp   = document.getElementById('user-name');
+  var emailInp  = document.getElementById('user-email');
+  var phoneInp  = document.getElementById('user-phone');
+  var name  = nameInp.value.trim();
+  var email = emailInp.value.trim();
+  var phone = phoneInp.value.trim();
+  var hasError = false;
+  if (!name)  { highlightError(nameInp);  hasError = true; }
+  if (!email) { highlightError(emailInp); hasError = true; }
+  if (!phone || phone.replace(/\D/g,'').length < 11) { highlightError(phoneInp); hasError = true; }
+  if (hasError) return;
+  submitBtn.textContent = 'Отправка...';
+  submitBtn.disabled = true;
+  var formData = new FormData();
+  formData.append('name', name);
+  formData.append('email', email);
+  formData.append('phone', phone);
+  formData.append('messenger', selectedMessenger || 'не выбран');
+  formData.append('score', score + ' из 3');
+  fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: formData })
+    .then(function()  { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; })
+    .catch(function() { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; });
+});
 
-  document.getElementById('submit-btn').addEventListener('click', function() {
-    var submitBtn = document.getElementById('submit-btn');
-    var nameInp   = document.getElementById('user-name');
-    var emailInp  = document.getElementById('user-email');
-    var phoneInp  = document.getElementById('user-phone');
-    var hpInp     = document.getElementById('company');
-    var name  = nameInp.value.trim();
-    var email = emailInp.value.trim();
-    var phone = phoneInp.value.trim();
+['user-name','user-email','user-phone','submit-btn'].forEach(function(id) {
+  var el = document.getElementById(id);
+  el.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+  el.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+});
 
-    // Honeypot: если бот заполнил скрытое поле — тихо имитируем успех, не шлём
-    if (hpInp && hpInp.value.trim() !== '') {
-      submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!';
-      submitBtn.disabled = true;
-      return;
-    }
+function handleAnswer(btn) {
+  if (btn.classList.contains('wrong') || btn.classList.contains('correct')) return;
+  var answer = btn.getAttribute('data-answer');
+  var grid = btn.closest('.buttons-grid');
+  var correctAnswer = grid.getAttribute('data-correct');
+  var nextScreen = parseInt(grid.getAttribute('data-next'));
+  var step = parseInt(grid.getAttribute('data-step'));
+  grid.classList.add('locked');
+  btn.classList.remove('pressed');
+  if (answer === correctAnswer) { score++; btn.classList.add('correct'); }
+  else { btn.classList.add('wrong'); }
+  fillProgressOnAnswer(step);
+  setTimeout(function() { goTo(nextScreen); }, 800);
+}
 
-    var hasError = false;
-    if (!name)  { highlightError(nameInp);  hasError = true; }
-    if (!email || !isValidEmail(email)) { highlightError(emailInp); hasError = true; }
-    if (!phone || phone.replace(/\D/g,'').length < 11) { highlightError(phoneInp); hasError = true; }
-    if (hasError) return;
-
-    submitBtn.textContent = 'Отправка...';
-    submitBtn.disabled = true;
-
-    var payload = {
-      name: name,
-      email: email,
-      phone: phone,
-      messenger: selectedMessenger || 'не выбран',
-      score: score + ' из 3'
-    };
-
-    var formData = new FormData();
-    formData.append('name', payload.name);
-    formData.append('email', payload.email);
-    formData.append('phone', payload.phone);
-    formData.append('messenger', payload.messenger);
-    formData.append('score', payload.score);
-
-    fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: formData })
-      .then(function(res) {
-        if (!res.ok && res.type !== 'opaque') throw new Error('bad response');
-        submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!';
-      })
-      .catch(function() {
-        // Лид не потерян: сохраняем локально и даём повторить
-        saveLeadBackup(payload);
-        submitBtn.textContent = 'Ошибка сети. Нажмите ещё раз';
-        submitBtn.disabled = false;
-      });
-  });
-
-  ['user-name','user-email','user-phone','submit-btn'].forEach(function(id) {
-    var el = document.getElementById(id);
-    el.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-    el.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
-  });
-
-  function handleAnswer(btn) {
-    if (btn.classList.contains('wrong') || btn.classList.contains('correct')) return;
-    var answer = btn.getAttribute('data-answer');
-    var grid = btn.closest('.buttons-grid');
-    var correctAnswer = grid.getAttribute('data-correct');
-    var nextScreen = parseInt(grid.getAttribute('data-next'), 10);
-    var step = parseInt(grid.getAttribute('data-step'), 10);
-    grid.classList.add('locked');
+document.querySelectorAll('.btn-item').forEach(function(btn) {
+  btn.addEventListener('touchstart', function()  { btn.classList.add('pressed'); }, { passive: true });
+  btn.addEventListener('touchcancel', function() { btn.classList.remove('pressed'); }, { passive: true });
+  btn.addEventListener('touchend', function(e) {
     btn.classList.remove('pressed');
-    // Приведение типов: строгое сравнение строк
-    if (String(answer) === String(correctAnswer)) { score++; btn.classList.add('correct'); }
-    else { btn.classList.add('wrong'); }
-    fillProgressOnAnswer(step);
-    setTimeout(function() { goTo(nextScreen); }, 800);
-  }
-
-  document.querySelectorAll('.btn-item').forEach(function(btn) {
-    btn.addEventListener('touchstart', function()  { btn.classList.add('pressed'); }, { passive: true });
-    btn.addEventListener('touchcancel', function() { btn.classList.remove('pressed'); }, { passive: true });
-    btn.addEventListener('touchend', function(e) {
-      btn.classList.remove('pressed');
-      if (moved) return;
-      var t = e.changedTouches[0];
-      if (Math.abs(t.clientX - startX) > 10 || Math.abs(t.clientY - startY) > 10) return;
-      e.stopPropagation();
-      handleAnswer(btn);
-    }, { passive: true });
-    btn.addEventListener('mousedown',  function() { btn.classList.add('pressed'); });
-    btn.addEventListener('mouseleave', function() { btn.classList.remove('pressed'); });
-    btn.addEventListener('mouseup', function() {
-      btn.classList.remove('pressed');
-      if (moved) return;
-      handleAnswer(btn);
-    });
-  });
-
-  carousel.addEventListener('touchstart', function(e) {
-    if (current === 0 || current === 1) return;
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    moved = false;
-    isDragging = true;
+    if (moved) return;
+    var t = e.changedTouches[0];
+    if (Math.abs(t.clientX - startX) > 10 || Math.abs(t.clientY - startY) > 10) return;
+    e.stopPropagation();
+    handleAnswer(btn);
   }, { passive: true });
-
-  carousel.addEventListener('touchmove', function(e) {
-    if (!isDragging) return;
-    var dx = Math.abs(e.touches[0].clientX - startX);
-    var dy = Math.abs(e.touches[0].clientY - startY);
-    if (dx > 5 || dy > 5) moved = true;
-  }, { passive: true });
-
-  carousel.addEventListener('touchend', function(e) {
-    if (!isDragging) return;
-    if (e.target.closest('.btn-item')) return;
-    isDragging = false;
-    if (current === 0 || current === 1) return;
-    var dx = startX - e.changedTouches[0].clientX;
-    var dy = startY - e.changedTouches[0].clientY;
-    if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
-  }, { passive: true });
-
-  carousel.addEventListener('mousedown', function(e) {
-    if (current === 0 || current === 1) return;
-    startX = e.clientX;
-    startY = e.clientY;
-    moved = false;
-    isDragging = true;
+  btn.addEventListener('mousedown',  function() { btn.classList.add('pressed'); });
+  btn.addEventListener('mouseleave', function() { btn.classList.remove('pressed'); });
+  btn.addEventListener('mouseup', function() {
+    btn.classList.remove('pressed');
+    if (moved) return;
+    handleAnswer(btn);
   });
+});
 
-  carousel.addEventListener('mouseup', function(e) {
-    if (!isDragging) return;
-    if (e.target.closest('.btn-item')) return;
-    isDragging = false;
-    if (current === 0 || current === 1) return;
-    var dx = startX - e.clientX;
-    var dy = startY - e.clientY;
-    if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
-  });
+carousel.addEventListener('touchstart', function(e) {
+  if (current === 0 || current === 1) return;
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  moved = false;
+  isDragging = true;
+}, { passive: true });
 
-  window.addEventListener('keydown', function(e) {
-    if (current === 0 || current === 1) return;
-    if (e.key === 'ArrowRight') goTo(current + 1);
-  });
+carousel.addEventListener('touchmove', function(e) {
+  if (!isDragging) return;
+  var dx = Math.abs(e.touches[0].clientX - startX);
+  var dy = Math.abs(e.touches[0].clientY - startY);
+  if (dx > 5 || dy > 5) moved = true;
+}, { passive: true });
 
-  goTo(0);
-})();
+carousel.addEventListener('touchend', function(e) {
+  if (!isDragging) return;
+  if (e.target.closest('.btn-item')) return;
+  isDragging = false;
+  if (current === 0 || current === 1) return;
+  var dx = startX - e.changedTouches[0].clientX;
+  var dy = startY - e.changedTouches[0].clientY;
+  if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
+}, { passive: true });
+
+carousel.addEventListener('mousedown', function(e) {
+  if (current === 0 || current === 1) return;
+  startX = e.clientX;
+  startY = e.clientY;
+  moved = false;
+  isDragging = true;
+});
+
+carousel.addEventListener('mouseup', function(e) {
+  if (!isDragging) return;
+  if (e.target.closest('.btn-item')) return;
+  isDragging = false;
+  if (current === 0 || current === 1) return;
+  var dx = startX - e.clientX;
+  var dy = startY - e.clientY;
+  if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
+});
+
+window.addEventListener('keydown', function(e) {
+  if (current === 0 || current === 1) return;
+  if (e.key === 'ArrowRight') goTo(current + 1);
+});
+
+goTo(0);
 </script>
 </body>
 </html>
