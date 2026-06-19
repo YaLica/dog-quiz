@@ -327,7 +327,7 @@ var email = emailInp.value.trim();
 var phone = phoneInp.value.trim();
 var hasError = false;
 if (!name)  { highlightError(nameInp);  hasError = true; }
-if (!email) { highlightError(emailInp); hasError = true; }
+if (!email || !isValidEmail(email)) { highlightError(emailInp); hasError = true; }
 if (!phone || phone.replace(/\D/g,'').length < 11) { highlightError(phoneInp); hasError = true; }
 if (hasError) return;
 submitBtn.textContent = 'Отправка...';
@@ -339,10 +339,14 @@ formData.append('phone', phone);
 formData.append('messenger', selectedMessenger || 'не выбран');
 formData.append('score', score + ' из 3');
 fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: formData })
-.then(function()  { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; })
-.catch(function() { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; });
+.then(function() {
+submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!';
+})
+.catch(function() {
+submitBtn.textContent = 'Ошибка сети. Нажмите ещё раз';
+submitBtn.disabled = false;
 });
-
+});
 
 ['user-name','user-email','user-phone','submit-btn'].forEach(function(id) {
 var el = document.getElementById(id);
