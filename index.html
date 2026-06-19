@@ -364,10 +364,7 @@ btn.classList.remove('pressed');
 if (answer === correctAnswer) { score++; btn.classList.add('correct'); }
 else { btn.classList.add('wrong'); }
 fillProgressOnAnswer(step);
-setTimeout(function() { goTo(nextScreen); }, 800);
 }
-
-
 document.querySelectorAll('.btn-item').forEach(function(btn) {
 btn.addEventListener('touchstart', function()  { btn.classList.add('pressed'); }, { passive: true });
 btn.addEventListener('touchcancel', function() { btn.classList.remove('pressed'); }, { passive: true });
@@ -390,7 +387,6 @@ handleAnswer(btn);
 
 
 carousel.addEventListener('touchstart', function(e) {
-if (current === 0 || current === 1) return;
 startX = e.touches[0].clientX;
 startY = e.touches[0].clientY;
 moved = false;
@@ -418,7 +414,6 @@ if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(cu
 
 
 carousel.addEventListener('mousedown', function(e) {
-if (current === 0 || current === 1) return;
 startX = e.clientX;
 startY = e.clientY;
 moved = false;
