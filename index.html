@@ -9,6 +9,18 @@
 <meta property="og:image"        content="https://Yalica.github.io/dog-quiz/preview-thumb.png" />
 <meta property="og:type"         content="website" />
 <meta name="twitter:card"        content="summary_large_image" />
+
+<!-- ===== ПРЕДЗАГРУЗКА КАРТИНОК ===== -->
+<link rel="preload" as="image" href="preview-thumb1.png">
+<link rel="preload" as="image" href="london-bg.png">
+<link rel="preload" as="image" href="corgi-shock.png">
+<link rel="preload" as="image" href="corgi-strange.png">
+<link rel="preload" as="image" href="corgi-freddie.png">
+<link rel="preload" as="image" href="btn-default.png">
+<link rel="preload" as="image" href="btn-pressed.png">
+<link rel="preload" as="image" href="btn-success.png">
+<link rel="preload" as="image" href="btn-error.png">
+
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; background-color: #000; }
@@ -164,6 +176,25 @@ body { display: flex; align-items: center; justify-content: center; background: 
 </div>
 </div>
 <script>
+/* ===== ПРЕДЗАГРУЗКА КАРТИНОК В КЭШ ===== */
+(function() {
+  var imagesToPreload = [
+    'preview-thumb1.png',
+    'london-bg.png',
+    'corgi-shock.png',
+    'corgi-strange.png',
+    'corgi-freddie.png',
+    'btn-default.png',
+    'btn-pressed.png',
+    'btn-success.png',
+    'btn-error.png'
+  ];
+  imagesToPreload.forEach(function(src) {
+    var img = new Image();
+    img.src = src;
+  });
+})();
+
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQiSBhiH3Wmy4s6sLZp32CjW6l_2ZwtzzRC5vwHfwfRz0-qsXHE7qo9sYAvSBV388MEQ/exec";
 
 function playSound(id) {
@@ -319,9 +350,9 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   var phone = phoneInp.value.trim();
   var hasError = false;
   if (!name)  { highlightError(nameInp);  hasError = true; }
-    if (!email) { highlightError(emailInp); hasError = true; }
+  if (!email) { highlightError(emailInp); hasError = true; }
   if (!phone || phone.replace(/\D/g,'').length < 11) { highlightError(phoneInp); hasError = true; }
-    if (hasError) return;
+  if (hasError) return;
   submitBtn.textContent = 'Отправка...';
   submitBtn.disabled = true;
   var formData = new FormData();
