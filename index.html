@@ -10,7 +10,6 @@
 <meta property="og:type"         content="website" />
 <meta name="twitter:card"        content="summary_large_image" />
 <style>
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { width: 100%; height: 100%; overflow: hidden; touch-action: none; background-color: #000; }
 @media (min-width: 600px) and (pointer: fine) {
@@ -33,11 +32,11 @@ body { display: flex; align-items: center; justify-content: center; background: 
 .progress-label span { color: rgba(255,255,255,0.55); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.3px; }
 .progress-track { width: 100%; height: 5px; background: rgba(255,255,255,0.15); border-radius: 10px; overflow: hidden; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .progress-fill { height: 100%; width: 0%; border-radius: 10px; background: linear-gradient(90deg, #d98a41, #f0b46a); box-shadow: 0 0 8px rgba(217,138,65,0.7); transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
-.corgi-wrap { position: absolute; top: 5mm; left: 0; width: 100%; height: 40%; display: flex; align-items: center; justify-content: center; z-index: 1; }
+.corgi-wrap { position: absolute; top: 19px; left: 0; width: 100%; height: 40%; display: flex; align-items: center; justify-content: center; z-index: 1; }
 .corgi-wrap img { width: 100%; height: 100%; object-fit: contain; }
-.question-box { position: absolute; top: calc(40% + 5mm + 20px - 3mm); left: 6px; right: 6px; height: calc(60px + 9mm); padding: 0 18px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 14px; border: 1px solid rgba(255,255,255,0.15); z-index: 2; display: flex; align-items: center; justify-content: center; text-align: center; }
-#screen-2 .question-box { height: calc(60px + 9mm + 4mm); }
-#screen-3 .question-box { height: calc(60px + 9mm + 4mm); }
+.question-box { position: absolute; top: calc(40% + 19px + 20px - 11px); left: 6px; right: 6px; height: calc(60px + 34px); padding: 0 18px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 14px; border: 1px solid rgba(255,255,255,0.15); z-index: 2; display: flex; align-items: center; justify-content: center; text-align: center; }
+#screen-2 .question-box { height: calc(60px + 34px + 15px); }
+#screen-3 .question-box { height: calc(60px + 34px + 15px); }
 #screen-results .question-box { top: 8%; transform: none; height: auto; padding: 20px 24px; }
 .question-text { color: #fff; font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; }
 #screen-2 .question-text { font-size: 15px; }
@@ -55,30 +54,53 @@ body { display: flex; align-items: center; justify-content: center; background: 
 #submit-btn { width: 100%; height: 54px; background: #d98a41; border: none; border-radius: 25px; color: #fff; font-size: 16px; font-weight: 700; font-family: system-ui, -apple-system, sans-serif; letter-spacing: 0.5px; cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none; -webkit-user-select: none; margin-top: 2px; }
 #submit-btn:active { transform: scale(0.95); }
 #submit-btn:disabled { opacity: 0.65; cursor: default; transform: none; }
-.buttons-grid { position: absolute; top: calc(40% + 5mm + 20px - 3mm + 60px + 9mm + 2px); left: 6px; right: 6px; bottom: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; row-gap: 0px; column-gap: 0px; z-index: 2; }
-#buttons-grid-2 { top: calc(40% + 5mm + 20px - 3mm + 60px + 9mm + 4mm + 2px); }
-#buttons-grid-3 { top: calc(40% + 5mm + 20px - 3mm + 60px + 9mm + 4mm + 2px); }
+.buttons-grid { position: absolute; top: calc(40% + 19px + 20px - 11px + 60px + 34px + 2px); left: 6px; right: 6px; bottom: 0px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; row-gap: 0px; column-gap: 0px; z-index: 2; }
+#buttons-grid-2 { top: calc(40% + 19px + 20px - 11px + 60px + 34px + 15px + 2px); }
+#buttons-grid-3 { top: calc(40% + 19px + 20px - 11px + 60px + 34px + 15px + 2px); }
 .buttons-grid.locked { pointer-events: none; }
 .btn-item { width: 100%; height: 100%; background: url('btn-default.png') center/100% 100% no-repeat; border: none; padding: 0; margin: 0; cursor: pointer; outline: none; overflow: hidden; display: flex; align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent; touch-action: manipulation; color: #000; font-size: 22px; font-weight: 700; font-family: system-ui, -apple-system, sans-serif; user-select: none; -webkit-user-select: none; }
 .btn-item.pressed { background-image: url('btn-pressed.png'); }
 .btn-item.correct { background-image: url('btn-success.png') !important; pointer-events: none; }
 .btn-item.wrong   { background-image: url('btn-error.png')   !important; pointer-events: none; }
+.pulse-badge {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  white-space: nowrap;
+  z-index: 10;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%   { transform: translateX(-50%) scale(1);    opacity: 1;   }
+  50%  { transform: translateX(-50%) scale(1.08); opacity: 0.85;}
+  100% { transform: translateX(-50%) scale(1);    opacity: 1;   }
+}
 </style>
 </head>
 <body>
 
+<audio id="sound-click"   src="click.mp3"   preload="auto"></audio>
+<audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
+<audio id="sound-wrong"   src="wrong.mp3"   preload="auto"></audio>
 
 <div class="phone-frame">
 <div class="carousel" id="carousel">
-
 
 <div class="screen" id="screen-thumb">
   <img id="thumb-img" src="preview-thumb.png" alt="preview">
 </div>
 
 <div class="screen" id="screen-preview">
-  <video class="bg-video" id="preview-video" src="preview.mp4" playsinline></video>
-  <div id="preview-overlay"></div>
+  <img class="bg-image" src="preview-thumb1.png" alt="preview">
+  <div class="pulse-badge">ПРОВЕРЬ СВОЙ УРОВЕНЬ</div>
 </div>
 
 <div class="screen" id="screen-1">
@@ -136,7 +158,7 @@ body { display: flex; align-items: center; justify-content: center; background: 
     <input class="form-input" type="text" id="user-name" placeholder="Ваше имя" autocomplete="off">
     <input class="form-input" type="email" id="user-email" placeholder="Ваш e-mail" autocomplete="off">
     <input class="form-input" type="tel" id="user-phone" placeholder="7 (900) 000-00-00" autocomplete="off">
-    <p class="messenger-label">Выберите мессенджер для общения</p>
+    <p class="messenger-label">Выберите месседжер для общения</p>
     <div class="messenger-row">
       <button class="messenger-btn" data-messenger="WhatsApp">WhatsApp</button>
       <button class="messenger-btn" data-messenger="Telegram">Telegram</button>
@@ -148,79 +170,79 @@ body { display: flex; align-items: center; justify-content: center; background: 
 
 </div>
 </div>
-
-
 <script>
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQiSBhiH3Wmy4s6sLZp32CjW6l_2ZwtzzRC5vwHfwfRz0-qsXHE7qo9sYAvSBV388MEQ/exec";
 
+function playSound(id) {
+  var s = document.getElementById(id);
+  if (!s) return;
+  s.currentTime = 0;
+  s.play().catch(function(){});
+}
 
 var PROGRESS_PERCENTS = [0, 33, 67, 100];
 
-
 function setProgressOnEnter(step) {
-var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
-var screen = document.getElementById(map[step]);
-if (!screen) return;
-var fill = screen.querySelector('.progress-fill');
-var labels = screen.querySelectorAll('.progress-label span');
-var percent = PROGRESS_PERCENTS[step - 1];
-if (fill) { fill.style.transition = 'none'; fill.style.width = percent + '%'; }
-if (labels[1]) labels[1].textContent = percent + '%';
+  var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
+  var screen = document.getElementById(map[step]);
+  if (!screen) return;
+  var fill = screen.querySelector('.progress-fill');
+  var labels = screen.querySelectorAll('.progress-label span');
+  var percent = PROGRESS_PERCENTS[step - 1];
+  if (fill) { fill.style.transition = 'none'; fill.style.width = percent + '%'; }
+  if (labels[1]) labels[1].textContent = percent + '%';
 }
-
 
 function fillProgressOnAnswer(step) {
-var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
-var screen = document.getElementById(map[step]);
-if (!screen) return;
-var fill = screen.querySelector('.progress-fill');
-var labels = screen.querySelectorAll('.progress-label span');
-var percent = PROGRESS_PERCENTS[step];
-if (fill) {
-fill.style.transition = 'width 0.5s cubic-bezier(0.4,0,0.2,1)';
-requestAnimationFrame(function() { fill.style.width = percent + '%'; });
+  var map = {1:'screen-1', 2:'screen-2', 3:'screen-3'};
+  var screen = document.getElementById(map[step]);
+  if (!screen) return;
+  var fill = screen.querySelector('.progress-fill');
+  var labels = screen.querySelectorAll('.progress-label span');
+  var percent = PROGRESS_PERCENTS[step];
+  if (fill) {
+    fill.style.transition = 'width 0.5s cubic-bezier(0.4,0,0.2,1)';
+    requestAnimationFrame(function() { fill.style.width = percent + '%'; });
+  }
+  if (labels[1]) labels[1].textContent = percent + '%';
 }
-if (labels[1]) labels[1].textContent = percent + '%';
-}
-
 
 function initPhoneMask(selector) {
-var inp = document.querySelector(selector);
-if (!inp) return;
-function formatPhone(digits) {
-var d = digits, result = '7 (';
-if (d.length === 0) return '7 (';
-result += d.substring(0, 3);
-if (d.length >= 3) result += ') ';
-result += d.substring(3, 6);
-if (d.length >= 6) result += '-';
-result += d.substring(6, 8);
-if (d.length >= 8) result += '-';
-result += d.substring(8, 10);
-return result;
-}
-inp.addEventListener('keydown', function(e) {
-if (e.key === 'Backspace') {
-e.preventDefault();
-var raw = inp.value.replace(/\D/g, '');
-var digits = raw.length > 1 ? raw.substring(1) : '';
-if (digits.length === 0) { inp.value = ''; return; }
-digits = digits.substring(0, digits.length - 1);
-inp.value = digits.length === 0 ? '' : formatPhone(digits);
-}
-});
-inp.addEventListener('input', function() {
-var raw = inp.value.replace(/\D/g, '');
-if (raw.length === 0) { inp.value = ''; return; }
-if (raw[0] === '7' || raw[0] === '8') raw = raw.substring(1);
-raw = raw.substring(0, 10);
-inp.value = formatPhone(raw);
-});
-inp.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-inp.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+  var inp = document.querySelector(selector);
+  if (!inp) return;
+  function formatPhone(digits) {
+    var d = digits, result = '7 (';
+    if (d.length === 0) return '7 (';
+    result += d.substring(0, 3);
+    if (d.length >= 3) result += ') ';
+    result += d.substring(3, 6);
+    if (d.length >= 6) result += '-';
+    result += d.substring(6, 8);
+    if (d.length >= 8) result += '-';
+    result += d.substring(8, 10);
+    return result;
+  }
+  inp.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace') {
+      e.preventDefault();
+      var raw = inp.value.replace(/\D/g, '');
+      var digits = raw.length > 1 ? raw.substring(1) : '';
+      if (digits.length === 0) { inp.value = ''; return; }
+      digits = digits.substring(0, digits.length - 1);
+      inp.value = digits.length === 0 ? '' : formatPhone(digits);
+    }
+  });
+  inp.addEventListener('input', function() {
+    var raw = inp.value.replace(/\D/g, '');
+    if (raw.length === 0) { inp.value = ''; return; }
+    if (raw[0] === '7' || raw[0] === '8') raw = raw.substring(1);
+    raw = raw.substring(0, 10);
+    inp.value = formatPhone(raw);
+  });
+  inp.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+  inp.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
 }
 initPhoneMask('#user-phone');
-
 
 const SWIPE_THRESHOLD = 50;
 const carousel = document.getElementById('carousel');
@@ -233,212 +255,190 @@ let isDragging = false;
 let score = 0;
 let selectedMessenger = '';
 
-
+/* ===== Экран 0: thumb -> preview ===== */
 var thumbScreen = document.getElementById('screen-thumb');
-function enterQuiz() {
-goTo(1);
-var v = document.getElementById('preview-video');
-v.currentTime = 0;
-v.play().catch(function(){});
-}
+function enterQuiz() { goTo(1); }
 thumbScreen.addEventListener('click', enterQuiz);
 thumbScreen.addEventListener('touchend', function(e) { e.stopPropagation(); enterQuiz(); }, { passive: true });
 thumbScreen.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
 
-
-const video = document.getElementById('preview-video');
-const overlay = document.getElementById('preview-overlay');
-video.loop = true;
-video.addEventListener('timeupdate', function() {
-if (video.currentTime >= 6.25) overlay.classList.add('active');
-});
-overlay.addEventListener('click', function() { video.pause(); goTo(2); });
-document.getElementById('screen-preview').addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-document.getElementById('screen-preview').addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
-document.getElementById('screen-preview').addEventListener('mousedown',  function(e) { e.stopPropagation(); });
-document.getElementById('screen-preview').addEventListener('mouseup',    function(e) { e.stopPropagation(); });
-
+/* ===== Экран 1: preview (картинка с плашкой) -> первый вопрос ===== */
+var previewScreen = document.getElementById('screen-preview');
+function goToQuiz() { playSound('sound-click'); goTo(2); }
+previewScreen.addEventListener('click', goToQuiz);
+previewScreen.addEventListener('touchend', function(e) { e.stopPropagation(); goToQuiz(); }, { passive: true });
+previewScreen.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+previewScreen.addEventListener('mousedown', function(e) { e.stopPropagation(); });
+previewScreen.addEventListener('mouseup',   function(e) { e.stopPropagation(); });
 
 function goTo(index) {
-if (index < 0) index = 0;
-if (index >= totalScreens) index = totalScreens - 1;
-current = index;
+  if (index < 0) index = 0;
+  if (index >= totalScreens) index = totalScreens - 1;
+  current = index;
 
+  if (current >= 2 && current <= 4) {
+    setProgressOnEnter(current - 1);
+  }
 
-if (current >= 2 && current <= 4) {
-setProgressOnEnter(current - 1);
+  if (current === 5) {
+    var label = '';
+    if      (score === 3) label = 'Потрясающе! Ты настоящий знаток!';
+    else if (score === 2) label = 'Отличный результат!';
+    else if (score === 1) label = 'Неплохо, но есть куда расти!';
+    else                  label = 'Попробуй ещё раз!';
+    document.getElementById('result-text').innerHTML =
+      label + '<br>Твой уровень знаний:<br>' + score + ' из 3 баллов';
+    resetForm();
+  }
+
+  carousel.style.transform = "translateX(-" + (current * (100 / totalScreens)) + "%)";
 }
-
-
-if (current === 5) {
-var label = '';
-if      (score === 3) label = 'Потрясающе! Ты настоящий знаток!';
-else if (score === 2) label = 'Отличный результат!';
-else if (score === 1) label = 'Неплохо, но есть куда расти!';
-else                  label = 'Попробуй ещё раз!';
-document.getElementById('result-text').innerHTML =
-label + '<br>Твой уровень знаний:<br>' + score + ' из 3 баллов';
-resetForm();
-}
-
-
-carousel.style.transform = "translateX(-" + (current * (100 / totalScreens)) + "%)";
-}
-
 
 function resetForm() {
-document.getElementById('user-name').value  = '';
-document.getElementById('user-email').value = '';
-document.getElementById('user-phone').value = '';
-['user-name','user-email','user-phone'].forEach(function(id) {
-document.getElementById(id).style.borderColor = 'rgba(255,255,255,0.35)';
-});
-selectedMessenger = '';
-document.querySelectorAll('.messenger-btn').forEach(function(b) { b.classList.remove('selected'); });
-var btn = document.getElementById('submit-btn');
-btn.textContent = 'ОСТАВИТЬ ЗАЯВКУ';
-btn.disabled = false;
+  document.getElementById('user-name').value  = '';
+  document.getElementById('user-email').value = '';
+  document.getElementById('user-phone').value = '';
+  ['user-name','user-email','user-phone'].forEach(function(id) {
+    document.getElementById(id).style.borderColor = 'rgba(255,255,255,0.35)';
+  });
+  selectedMessenger = '';
+  document.querySelectorAll('.messenger-btn').forEach(function(b) { b.classList.remove('selected'); });
+  var btn = document.getElementById('submit-btn');
+  btn.textContent = 'ОСТАВИТЬ ЗАЯВКУ';
+  btn.disabled = false;
 }
-
 
 document.querySelectorAll('.messenger-btn').forEach(function(btn) {
-btn.addEventListener('click', function() {
-document.querySelectorAll('.messenger-btn').forEach(function(b) { b.classList.remove('selected'); });
-btn.classList.add('selected');
-selectedMessenger = btn.getAttribute('data-messenger');
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.messenger-btn').forEach(function(b) { b.classList.remove('selected'); });
+    btn.classList.add('selected');
+    selectedMessenger = btn.getAttribute('data-messenger');
+  });
+  btn.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+  btn.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
 });
-btn.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-btn.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
-});
-
 
 function highlightError(el) {
-el.style.borderColor = '#ff6b6b';
-setTimeout(function() { el.style.borderColor = 'rgba(255,255,255,0.35)'; }, 1500);
+  el.style.borderColor = '#ff6b6b';
+  setTimeout(function() { el.style.borderColor = 'rgba(255,255,255,0.35)'; }, 1500);
 }
-
 
 document.getElementById('submit-btn').addEventListener('click', function() {
-var submitBtn = document.getElementById('submit-btn');
-var nameInp   = document.getElementById('user-name');
-var emailInp  = document.getElementById('user-email');
-var phoneInp  = document.getElementById('user-phone');
-var name  = nameInp.value.trim();
-var email = emailInp.value.trim();
-var phone = phoneInp.value.trim();
-var hasError = false;
-if (!name)  { highlightError(nameInp);  hasError = true; }
-if (!email) { highlightError(emailInp); hasError = true; }
-if (!phone || phone.replace(/\D/g,'').length < 11) { highlightError(phoneInp); hasError = true; }
-if (hasError) return;
-submitBtn.textContent = 'Отправка...';
-submitBtn.disabled = true;
-var formData = new FormData();
-formData.append('name', name);
-formData.append('email', email);
-formData.append('phone', phone);
-formData.append('messenger', selectedMessenger || 'не выбран');
-formData.append('score', score + ' из 3');
-fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: formData })
-.then(function()  { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; })
-.catch(function() { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; });
+  var submitBtn = document.getElementById('submit-btn');
+  var nameInp   = document.getElementById('user-name');
+  var emailInp  = document.getElementById('user-email');
+  var phoneInp  = document.getElementById('user-phone');
+  var name  = nameInp.value.trim();
+  var email = emailInp.value.trim();
+  var phone = phoneInp.value.trim();
+  var hasError = false;
+  if (!name)  { highlightError(nameInp);  hasError = true; }
+    if (!email) { highlightError(emailInp); hasError = true; }
+  if (!phone || phone.replace(/\D/g,'').length < 11) { highlightError(phoneInp); hasError = true; }
+  if (hasError) return;
+  submitBtn.textContent = 'Отправка...';
+  submitBtn.disabled = true;
+  var formData = new FormData();
+  formData.append('name', name);
+  formData.append('email', email);
+  formData.append('phone', phone);
+  formData.append('messenger', selectedMessenger || 'не выбран');
+  formData.append('score', score + ' из 3');
+  fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: formData })
+    .then(function()  { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; })
+    .catch(function() { submitBtn.textContent = 'Спасибо! В ближайшее время мы свяжемся с Вами!'; });
 });
-
 
 ['user-name','user-email','user-phone','submit-btn'].forEach(function(id) {
-var el = document.getElementById(id);
-el.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-el.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
+  var el = document.getElementById(id);
+  el.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+  el.addEventListener('touchend',   function(e) { e.stopPropagation(); }, { passive: true });
 });
-
 
 function handleAnswer(btn) {
-if (btn.classList.contains('wrong') || btn.classList.contains('correct')) return;
-var answer = btn.getAttribute('data-answer');
-var grid = btn.closest('.buttons-grid');
-var correctAnswer = grid.getAttribute('data-correct');
-var nextScreen = parseInt(grid.getAttribute('data-next'));
-var step = parseInt(grid.getAttribute('data-step'));
-grid.classList.add('locked');
-btn.classList.remove('pressed');
-if (answer === correctAnswer) { score++; btn.classList.add('correct'); }
-else { btn.classList.add('wrong'); }
-fillProgressOnAnswer(step);
+  if (btn.classList.contains('wrong') || btn.classList.contains('correct')) return;
+  var answer = btn.getAttribute('data-answer');
+  var grid = btn.closest('.buttons-grid');
+  var correctAnswer = grid.getAttribute('data-correct');
+  var nextScreen = parseInt(grid.getAttribute('data-next'));
+  var step = parseInt(grid.getAttribute('data-step'));
+  grid.classList.add('locked');
+  btn.classList.remove('pressed');
+  if (answer === correctAnswer) { score++; btn.classList.add('correct'); playSound('sound-correct'); }
+  else { btn.classList.add('wrong'); playSound('sound-wrong'); }
+  fillProgressOnAnswer(step);
+  setTimeout(function() { goTo(nextScreen); }, 800);
 }
-document.querySelectorAll('.btn-item').forEach(function(btn) {
-btn.addEventListener('touchstart', function()  { btn.classList.add('pressed'); }, { passive: true });
-btn.addEventListener('touchcancel', function() { btn.classList.remove('pressed'); }, { passive: true });
-btn.addEventListener('touchend', function(e) {
-btn.classList.remove('pressed');
-if (moved) return;
-var t = e.changedTouches[0];
-if (Math.abs(t.clientX - startX) > 10 || Math.abs(t.clientY - startY) > 10) return;
-e.stopPropagation();
-handleAnswer(btn);
-}, { passive: true });
-btn.addEventListener('mousedown',  function() { btn.classList.add('pressed'); });
-btn.addEventListener('mouseleave', function() { btn.classList.remove('pressed'); });
-btn.addEventListener('mouseup', function() {
-btn.classList.remove('pressed');
-if (moved) return;
-handleAnswer(btn);
-});
-});
 
+document.querySelectorAll('.btn-item').forEach(function(btn) {
+  btn.addEventListener('touchstart', function()  { btn.classList.add('pressed'); }, { passive: true });
+  btn.addEventListener('touchcancel', function() { btn.classList.remove('pressed'); }, { passive: true });
+  btn.addEventListener('touchend', function(e) {
+    btn.classList.remove('pressed');
+    if (moved) return;
+    var t = e.changedTouches[0];
+    if (Math.abs(t.clientX - startX) > 10 || Math.abs(t.clientY - startY) > 10) return;
+    e.stopPropagation();
+    handleAnswer(btn);
+  }, { passive: true });
+  btn.addEventListener('mousedown',  function() { btn.classList.add('pressed'); });
+  btn.addEventListener('mouseleave', function() { btn.classList.remove('pressed'); });
+  btn.addEventListener('mouseup', function() {
+    btn.classList.remove('pressed');
+    if (moved) return;
+    handleAnswer(btn);
+  });
+});
 
 carousel.addEventListener('touchstart', function(e) {
-startX = e.touches[0].clientX;
-startY = e.touches[0].clientY;
-moved = false;
-isDragging = true;
+  if (current === 0 || current === 1) return;
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  moved = false;
+  isDragging = true;
 }, { passive: true });
-
 
 carousel.addEventListener('touchmove', function(e) {
-if (!isDragging) return;
-var dx = Math.abs(e.touches[0].clientX - startX);
-var dy = Math.abs(e.touches[0].clientY - startY);
-if (dx > 5 || dy > 5) moved = true;
+  if (!isDragging) return;
+  var dx = Math.abs(e.touches[0].clientX - startX);
+  var dy = Math.abs(e.touches[0].clientY - startY);
+  if (dx > 5 || dy > 5) moved = true;
 }, { passive: true });
-
 
 carousel.addEventListener('touchend', function(e) {
-if (!isDragging) return;
-if (e.target.closest('.btn-item')) return;
-isDragging = false;
-if (current === 0 || current === 1) return;
-var dx = startX - e.changedTouches[0].clientX;
-var dy = startY - e.changedTouches[0].clientY;
-if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
+  if (!isDragging) return;
+  if (e.target.closest('.btn-item')) return;
+  isDragging = false;
+  if (current === 0 || current === 1) return;
+  var dx = startX - e.changedTouches[0].clientX;
+  var dy = startY - e.changedTouches[0].clientY;
+  if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
 }, { passive: true });
 
-
 carousel.addEventListener('mousedown', function(e) {
-startX = e.clientX;
-startY = e.clientY;
-moved = false;
-isDragging = true;
+  if (current === 0 || current === 1) return;
+  startX = e.clientX;
+  startY = e.clientY;
+  moved = false;
+  isDragging = true;
 });
-
 
 carousel.addEventListener('mouseup', function(e) {
-if (!isDragging) return;
-if (e.target.closest('.btn-item')) return;
-isDragging = false;
-if (current === 0 || current === 1) return;
-var dx = startX - e.clientX;
-var dy = startY - e.clientY;
-if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
+  if (!isDragging) return;
+  if (e.target.closest('.btn-item')) return;
+  isDragging = false;
+  if (current === 0 || current === 1) return;
+  var dx = startX - e.clientX;
+  var dy = startY - e.clientY;
+  if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
 });
-
 
 window.addEventListener('keydown', function(e) {
-if (current === 0 || current === 1) return;
-if (e.key === 'ArrowRight') goTo(current + 1);
+  if (current === 0 || current === 1) return;
+  if (e.key === 'ArrowRight') goTo(current + 1);
 });
-
 
 goTo(0);
 </script>
 </body>
-</html>                          
+</html>
