@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -19,14 +19,11 @@ body { display: flex; align-items: center; justify-content: center; background: 
 @media not all and (min-width: 600px) and (pointer: fine) {
 .phone-frame { width: 100%; height: 100%; }
 }
-.carousel { display: flex; width: 600%; height: 100%; transition: transform 0.4s ease; }
-.screen { width: calc(100% / 6); height: 100%; flex-shrink: 0; position: relative; background-color: #000; }
+.carousel { display: flex; width: 500%; height: 100%; transition: transform 0.4s ease; }
+.screen { width: calc(100% / 5); height: 100%; flex-shrink: 0; position: relative; background-color: #000; }
 .bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 0; }
 .bg-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 0; }
-#thumb-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; z-index: 1; }
-#screen-thumb { cursor: pointer; }
-#preview-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; cursor: pointer; pointer-events: none; }
-#preview-overlay.active { pointer-events: auto; }
+#screen-preview { cursor: pointer; }
 .progress-wrap { position: absolute; top: 10px; left: 16px; right: 16px; z-index: 10; display: flex; flex-direction: column; gap: 4px; }
 .progress-label { display: flex; justify-content: space-between; align-items: center; }
 .progress-label span { color: rgba(255,255,255,0.55); font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.3px; }
@@ -94,10 +91,6 @@ body { display: flex; align-items: center; justify-content: center; background: 
 <div class="phone-frame">
 <div class="carousel" id="carousel">
 
-<div class="screen" id="screen-thumb">
-  <img id="thumb-img" src="preview-thumb.png" alt="preview">
-</div>
-
 <div class="screen" id="screen-preview">
   <img class="bg-image" src="preview-thumb1.png" alt="preview">
   <div class="pulse-badge">ПРОВЕРЬ СВОЙ УРОВЕНЬ</div>
@@ -111,7 +104,7 @@ body { display: flex; align-items: center; justify-content: center; background: 
   </div>
   <div class="corgi-wrap"><img src="corgi-shock.png" alt="corgi"></div>
   <div class="question-box"><p class="question-text">Какое слово точнее всего описывает эмоцию маскота Корги?</p></div>
-  <div class="buttons-grid" id="buttons-grid-1" data-correct="2" data-next="3" data-step="1">
+  <div class="buttons-grid" id="buttons-grid-1" data-correct="2" data-next="2" data-step="1">
     <button class="btn-item" data-answer="1">Excited</button>
     <button class="btn-item" data-answer="2">Shocked</button>
     <button class="btn-item" data-answer="3">Devastated</button>
@@ -127,7 +120,7 @@ body { display: flex; align-items: center; justify-content: center; background: 
   </div>
   <div class="corgi-wrap"><img src="corgi-strange.png" alt="corgi"></div>
   <div class="question-box"><p class="question-text">Доктор Корги-Стрэндж просчитал 14 000 вариантов будущего. Помоги ему выбрать верную грамматику для заклинания: „If I tell you what happens, it ... happen".</p></div>
-  <div class="buttons-grid" id="buttons-grid-2" data-correct="1" data-next="4" data-step="2">
+  <div class="buttons-grid" id="buttons-grid-2" data-correct="1" data-next="3" data-step="2">
     <button class="btn-item" data-answer="1">won't</button>
     <button class="btn-item" data-answer="2">doesn't</button>
     <button class="btn-item" data-answer="3">didn't</button>
@@ -143,7 +136,7 @@ body { display: flex; align-items: center; justify-content: center; background: 
   </div>
   <div class="corgi-wrap"><img src="corgi-freddie.png" alt="corgi"></div>
   <div class="question-box"><p class="question-text">Корги Меркьюри виртуозно управляет временами. Какое слово пропущено в строке легендарной песни: «I ... it all, and I want it now»?</p></div>
-  <div class="buttons-grid" id="buttons-grid-3" data-correct="1" data-next="5" data-step="3">
+  <div class="buttons-grid" id="buttons-grid-3" data-correct="1" data-next="4" data-step="3">
     <button class="btn-item" data-answer="1">want</button>
     <button class="btn-item" data-answer="2">wanted</button>
     <button class="btn-item" data-answer="3">have wanted</button>
@@ -246,7 +239,7 @@ initPhoneMask('#user-phone');
 
 const SWIPE_THRESHOLD = 50;
 const carousel = document.getElementById('carousel');
-const totalScreens = 6;
+const totalScreens = 5;
 let current = 0;
 let startX = 0;
 let startY = 0;
@@ -255,16 +248,9 @@ let isDragging = false;
 let score = 0;
 let selectedMessenger = '';
 
-/* ===== Экран 0: thumb -> preview ===== */
-var thumbScreen = document.getElementById('screen-thumb');
-function enterQuiz() { goTo(1); }
-thumbScreen.addEventListener('click', enterQuiz);
-thumbScreen.addEventListener('touchend', function(e) { e.stopPropagation(); enterQuiz(); }, { passive: true });
-thumbScreen.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
-
-/* ===== Экран 1: preview (картинка с плашкой) -> первый вопрос ===== */
+/* ===== Экран 0: preview (картинка с плашкой) -> первый вопрос ===== */
 var previewScreen = document.getElementById('screen-preview');
-function goToQuiz() { playSound('sound-click'); goTo(2); }
+function goToQuiz() { playSound('sound-click'); goTo(1); }
 previewScreen.addEventListener('click', goToQuiz);
 previewScreen.addEventListener('touchend', function(e) { e.stopPropagation(); goToQuiz(); }, { passive: true });
 previewScreen.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
@@ -276,11 +262,11 @@ function goTo(index) {
   if (index >= totalScreens) index = totalScreens - 1;
   current = index;
 
-  if (current >= 2 && current <= 4) {
-    setProgressOnEnter(current - 1);
+  if (current >= 1 && current <= 3) {
+    setProgressOnEnter(current);
   }
 
-  if (current === 5) {
+  if (current === 4) {
     var label = '';
     if      (score === 3) label = 'Потрясающе! Ты настоящий знаток!';
     else if (score === 2) label = 'Отличный результат!';
@@ -391,7 +377,7 @@ document.querySelectorAll('.btn-item').forEach(function(btn) {
 });
 
 carousel.addEventListener('touchstart', function(e) {
-  if (current === 0 || current === 1) return;
+  if (current === 0) return;
   startX = e.touches[0].clientX;
   startY = e.touches[0].clientY;
   moved = false;
@@ -409,14 +395,14 @@ carousel.addEventListener('touchend', function(e) {
   if (!isDragging) return;
   if (e.target.closest('.btn-item')) return;
   isDragging = false;
-  if (current === 0 || current === 1) return;
+  if (current === 0) return;
   var dx = startX - e.changedTouches[0].clientX;
   var dy = startY - e.changedTouches[0].clientY;
   if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
 }, { passive: true });
 
 carousel.addEventListener('mousedown', function(e) {
-  if (current === 0 || current === 1) return;
+  if (current === 0) return;
   startX = e.clientX;
   startY = e.clientY;
   moved = false;
@@ -427,14 +413,14 @@ carousel.addEventListener('mouseup', function(e) {
   if (!isDragging) return;
   if (e.target.closest('.btn-item')) return;
   isDragging = false;
-  if (current === 0 || current === 1) return;
+  if (current === 0) return;
   var dx = startX - e.clientX;
   var dy = startY - e.clientY;
   if (Math.abs(dx) > Math.abs(dy) && dx > SWIPE_THRESHOLD) { moved = true; goTo(current + 1); }
 });
 
 window.addEventListener('keydown', function(e) {
-  if (current === 0 || current === 1) return;
+  if (current === 0) return;
   if (e.key === 'ArrowRight') goTo(current + 1);
 });
 
