@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>КОРГИ Инглиш — пройди тест!</title>
-<meta property="og:title"        content="КОРГИ Инглиш — пройди тест по английскому!" />
-<meta property="og:description"  content="Проверь свой English вместе с Корги 🐕" />
+<title>НАЖМИ ЧТОБ ПОСМОТРЕТЬ</title>
+<meta property="og:title"        content="НАЖМИ ЧТОБ ПОСМОТРЕТЬ" />
+<meta property="og:description"  content="НАЖМИ ЧТОБ ПОСМОТРЕТЬ" />
 <meta property="og:image"        content="https://Yalica.github.io/dog-quiz/preview-thumb.png" />
 <meta property="og:type"         content="website" />
 <meta name="twitter:card"        content="summary_large_image" />
@@ -335,7 +335,7 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   if (!name)  { highlightError(nameInp);  hasError = true; }
     if (!email) { highlightError(emailInp); hasError = true; }
   if (!phone || phone.replace(/\D/g,'').length < 11) { highlightError(phoneInp); hasError = true; }
-  if (hasError) return;
+    if (hasError) return;
   submitBtn.textContent = 'Отправка...';
   submitBtn.disabled = true;
   var formData = new FormData();
