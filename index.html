@@ -105,7 +105,7 @@ body { display: flex; align-items: center; justify-content: center; background: 
 
 <div class="screen" id="screen-preview">
   <img class="bg-image" src="preview-thumb1.png" alt="preview">
-  <div class="pulse-badge">ПРОВЕРЬ СВОЙ УРОВЕНЬ</div>
+  <div class="pulse-badge">ПРОВЕРИТЬ СВОЙ УРОВЕНЬ</div>
 </div>
 
 <div class="screen" id="screen-1">
@@ -299,12 +299,12 @@ function goTo(index) {
 
   if (current === 4) {
     var label = '';
-    if      (score === 3) label = 'Потрясающе! Ты настоящий знаток!';
-    else if (score === 2) label = 'Отличный результат!';
+    if      (score === 3) label = 'Потрясающе! Вы настоящий знаток!';
+    else if (score === 2) label = 'Так держать!';
     else if (score === 1) label = 'Неплохо, но есть куда расти!';
-    else                  label = 'Попробуй ещё раз!';
+    else                  label = 'Попробуйте ещё раз!';
     document.getElementById('result-text').innerHTML =
-      label + '<br>Твой уровень знаний:<br>' + score + ' из 3 баллов';
+      label + '<br>Ваш результат:<br>' + score + ' из 3 баллов';
     resetForm();
   }
 
